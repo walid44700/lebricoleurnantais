@@ -20,3 +20,13 @@ collections:
       - { label: "Description (SEO)", name: "description", widget: "string" }
       - { label: "Contenu", name: "body", widget: "markdown" }
       
+  - name: "realisations"
+  label: "Réalisations"
+  folder: "content/realisations"
+  create: true
+  slug: "{{slug}}"
+  fields:
+    - { label: "Titre", name: "title", widget: "string" }
+    - { label: "Catégorie", name: "categorie", widget: "select", options: ["Cuisine", "Sol", "Meubles", "Accrochage", "Commerce"] }
+    - { label: "Photo", name: "image", widget: "image" }
+    - { label: "Description", name: "description", widget: "text", required: false }
