@@ -1,6 +1,5 @@
 backend:
-  name: github
-  repo: walid44700/lebricoleurnantais
+  name: git-gateway
   branch: main
 
 media_folder: "assets/images/uploads"
