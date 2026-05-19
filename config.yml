@@ -1,0 +1,33 @@
+backend:
+  name: github
+  repo: walid44700/lebricoleurnantais
+  branch: main
+
+media_folder: "assets/images/uploads"
+public_folder: "/assets/images/uploads"
+
+locale: 'fr'
+
+collections:
+  - name: "blog"
+    label: "Articles de blog"
+    folder: "content/blog"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Titre", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Image principale", name: "image", widget: "image", required: false }
+      - { label: "Description (SEO)", name: "description", widget: "string" }
+      - { label: "Contenu", name: "body", widget: "markdown" }
+
+  - name: "realisations"
+    label: "Réalisations / Photos"
+    folder: "content/realisations"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Titre", name: "title", widget: "string" }
+      - { label: "Catégorie", name: "categorie", widget: "select", options: ["Cuisine", "Sol", "Meubles", "Accrochage", "Commerce"] }
+      - { label: "Photo", name: "image", widget: "image" }
+      - { label: "Description courte", name: "description", widget: "string", required: false }
