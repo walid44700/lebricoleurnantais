@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Réalisations — Le Bricoleur Nantais | Nantes</title>
+  <meta name="description" content="Galerie de réalisations de Walid Bouras, Le Bricoleur Nantais : poses de cuisine, sols, montage de meubles, aménagement de commerces à Nantes.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+  <style>
+    .realisations-hero {
+      padding: 10rem 0 4rem;
+      text-align: center;
+      position: relative;
+    }
+    .realisations-hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 30%, rgba(184,115,51,0.05), transparent 60%);
+      pointer-events: none;
+    }
+    .realisations-hero h1 { font-size: clamp(2.5rem, 5vw, 4.5rem); margin-bottom: 1rem; }
+    .realisations-hero h1 em { font-style: italic; color: var(--color-copper); }
+    .realisations-hero p { font-size: 1.1rem; color: var(--color-graphite); max-width: 540px; margin: 0 auto; }
+
+    /* Filtres */
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      justify-content: center;
+      padding: 2.5rem 1.5rem 3rem;
+    }
+
+    .filter-btn {
+      padding: 0.6rem 1.25rem;
+      background: var(--color-white);
+      border: 1.5px solid rgba(26,26,26,0.15);
+      font-family: inherit;
+      font-size: 0.9rem;
+      color: var(--color-ink-soft);
+      cursor: pointer;
+      transition: all 0.2s;
+      border-radius: 0;
+    }
+
+    .filter-btn:hover {
+      border-color: var(--color-copper);
+      color: var(--color-copper);
+    }
+
+    .filter-btn.is-active {
+      background: var(--color-ink);
+      border-color: var(--color-ink);
+      color: var(--color-paper);
+    }
+
+    /* Grille */
+    .realisations-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      padding: 0 0 6rem;
+    }
+
+    @media (max-width: 968px) { .realisations-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 560px) { .realisations-grid { grid-template-columns: 1fr; } }
+
+    .realisation-item {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      cursor: pointer;
+      background: var(--color-paper-warm);
+    }
+
+    .realisation-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s var(--ease-out);
+      display: block;
+    }
+
+    .realisation-item:hover img { transform: scale(1.06); }
+
+    .realisation-item::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 50%, rgba(26,26,26,0.65));
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+
+    .realisation-item:hover::after { opacity: 1; }
+
+    .realisation-label {
+      position: absolute;
+      bottom: 1rem;
+      left: 1rem;
+      right: 1rem;
+      color: var(--color-paper);
+      z-index: 2;
+      transform: translateY(8px);
+      opacity: 0;
+      transition: all 0.4s;
+    }
+
+    .realisation-item:hover .realisation-label {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .realisation-label .cat {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--color-copper-soft);
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
+    .realisation-label .titre {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+    }
+
+    .realisation-item.is-hidden {
+      display: none;
+    }
+
+    /* Vide */
+    .realisations-empty {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 4rem 2rem;
+      color: var(--color-graphite);
+      font-size: 1rem;
+      display: none;
+    }
+
+    .realisations-empty.show { display: block; }
+
+    /* Lightbox */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(10,10,10,0.92);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .lightbox.is-open { display: flex; }
+
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 85vh;
+      object-fit: contain;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.5);
+    }
+
+    .lightbox-close {
+      position: fixed;
+      top: 1.5rem;
+      right: 1.5rem;
+      background: transparent;
+      border: none;
+      color: var(--color-paper);
+      font-size: 2rem;
+      cursor: pointer;
+      line-height: 1;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+    }
+
+    .lightbox-close:hover { opacity: 1; }
+
+    .lightbox-info {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--color-paper);
+      text-align: center;
+    }
+
+    .lightbox-info .cat {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--color-copper-soft);
+    }
+
+    .lightbox-info .titre {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header" id="header">
+    <div class="header-inner">
+      <a href="../index.html" class="header-logo">
+        <img src="../assets/images/logo-principal.png" alt="Le Bricoleur Nantais">
+      </a>
+      <nav class="header-nav" id="nav">
+        <ul class="nav-list">
+          <li><a href="../index.html#services" class="nav-link">Services</a></li>
+          <li><a href="realisations.html" class="nav-link">Réalisations</a></li>
+          <li><a href="../index.html#commerces" class="nav-link">Commerces</a></li>
+          <li><a href="a-propos.html" class="nav-link">À propos</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+        <div class="header-cta">
+          <a href="tel:+33615054557" class="tel-link">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8"><path d="M3 5a2 2 0 0 1 2-2h2.28a1 1 0 0 1 .95.68l1.5 4.5a1 1 0 0 1-.25 1.04L8 10.5a11 11 0 0 0 5.5 5.5l1.28-1.48a1 1 0 0 1 1.04-.25l4.5 1.5a1 1 0 0 1 .68.95V19a2 2 0 0 1-2 2h-1C9.4 21 3 14.6 3 6V5z"/></svg>
+            06 15 05 45 57
+          </a>
+          <a href="devis.html" class="btn btn-primary"><span>Estimation gratuite</span></a>
+        </div>
+      </nav>
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="realisations-hero">
+    <div class="container" style="position:relative;z-index:2;">
+      <span class="eyebrow">Mes réalisations</span>
+      <h1>Ce que j'ai fait <em>récemment</em></h1>
+      <p>Cuisines, sols, meubles, commerces et bien d'autres chantiers réalisés à Nantes et environs.</p>
+    </div>
+  </section>
+
+  <!-- FILTRES -->
+  <div class="filters" id="filters">
+    <button class="filter-btn is-active" data-filter="all">Tout voir</button>
+    <button class="filter-btn" data-filter="Cuisine">Cuisine</button>
+    <button class="filter-btn" data-filter="Sol">Sol</button>
+    <button class="filter-btn" data-filter="Meubles">Meubles</button>
+    <button class="filter-btn" data-filter="Accrochage">Accrochage</button>
+    <button class="filter-btn" data-filter="Commerce">Commerce</button>
+    <button class="filter-btn" data-filter="Autres">Autres</button>
+  </div>
+
+  <!-- GRILLE -->
+  <div class="container">
+    <div class="realisations-grid" id="grid">
+
+      <!-- Photos existantes (chantiers déjà photographiés) -->
+      <div class="realisation-item" data-categorie="Cuisine">
+        <img src="../assets/images/cuisine-hero.jpg" alt="Cuisine blanche avec crédence marbre" loading="lazy">
+        <div class="realisation-label">
+          <span class="cat">Cuisine</span>
+          <span class="titre">Cuisine blanche & marbre — Nantes</span>
+        </div>
+      </div>
+
+      <div class="realisation-item" data-categorie="Cuisine">
+        <img src="../assets/images/cuisine-credence-bois.jpg" alt="Cuisine blanche crédence bois" loading="lazy">
+        <div class="realisation-label">
+          <span class="cat">Cuisine</span>
+          <span class="titre">Cuisine crédence bois</span>
+        </div>
+      </div>
+
+      <div class="realisation-item" data-categorie="Cuisine">
+        <img src="../assets/images/cuisine-poignees-cuivre.jpg" alt="Cuisine poignées cuivre" loading="lazy">
+        <div class="realisation-label">
+          <span class="cat">Cuisine</span>
+          <span class="titre">Cuisine poignées cuivre</span>
+        </div>
+      </div>
+
+      <div class="realisation-item" data-categorie="Cuisine">
+        <img src="../assets/images/bar-plan-travail.jpg" alt="Bar plan de travail" loading="lazy">
+        <div class="realisation-label">
+          <span class="cat">Cuisine</span>
+          <span class="titre">Bar & plan de travail</span>
+        </div>
+      </div>
+
+      <div class="realisation-item" data-categorie="Sol">
+        <img src="../assets/images/sol-chambre.jpg" alt="Sol stratifié chambre" loading="lazy">
+        <div class="realisation-label">
+          <span class="cat">Sol</span>
+          <span class="titre">Sol stratifié chambre</span>
+        </div>
+      </div>
+
+      <div class="realisation-item" data-categorie="Sol">
+        <img src="../assets/images/sol-chevron.jpg" alt="Sol motif chevrons" loading="lazy">
+        <div class="realisation-label">
+          <span class="cat">Sol</span>
+          <span class="titre">Sol motif chevrons</span>
+        </div>
+      </div>
+
+      <div class="realisation-item" data-categorie="Accrochage">
+        <img src="../assets/images/etageres-leds.jpg" alt="Étagères murales LED" loading="lazy">
+        <div class="realisation-label">
+          <span class="cat">Accrochage</span>
+          <span class="titre">Étagères & LED</span>
+        </div>
+      </div>
+
+      <div class="realisation-item" data-categorie="Meubles">
+        <img src="../assets/images/chambre-tipi.jpg" alt="Chambre enfant lit tipi" loading="lazy">
+        <div class="realisation-label">
+          <span class="cat">Meubles</span>
+          <span class="titre">Chambre enfant</span>
+        </div>
+      </div>
+
+      <div class="realisation-item" data-categorie="Commerce">
+        <img src="../assets/images/commerces/vip-apres.jpg" alt="VIP Coiff & Barber" loading="lazy">
+        <div class="realisation-label">
+          <span class="cat">Commerce</span>
+          <span class="titre">VIP Coiff & Barber</span>
+        </div>
+      </div>
+
+      <div class="realisation-item" data-categorie="Commerce">
+        <img src="../assets/images/commerces/mouss-apres.jpg" alt="Mouss'Barber" loading="lazy">
+        <div class="realisation-label">
+          <span class="cat">Commerce</span>
+          <span class="titre">Mouss'Barber</span>
+        </div>
+      </div>
+
+      <div class="realisation-item" data-categorie="Commerce">
+        <img src="../assets/images/commerces/aml-apres.jpg" alt="Salon AML" loading="lazy">
+        <div class="realisation-label">
+          <span class="cat">Commerce</span>
+          <span class="titre">Salon AML</span>
+        </div>
+      </div>
+
+      <div class="realisation-item" data-categorie="Commerce">
+        <img src="../assets/images/commerces/sorya-apres.jpg" alt="Restaurant Sorya" loading="lazy">
+        <div class="realisation-label">
+          <span class="cat">Commerce</span>
+          <span class="titre">Restaurant Sorya</span>
+        </div>
+      </div>
+
+      <!-- Photos ajoutées via l'admin (chargées dynamiquement) -->
+      <div id="dynamic-photos"></div>
+
+      <div class="realisations-empty" id="emptyMsg">
+        Aucune réalisation dans cette catégorie pour l'instant.
+      </div>
+
+    </div>
+  </div>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightboxClose">×</button>
+    <img id="lightboxImg" src="" alt="">
+    <div class="lightbox-info">
+      <span class="cat" id="lightboxCat"></span>
+      <span class="titre" id="lightboxTitre"></span>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <section style="background: var(--color-ink); color: var(--color-paper); padding: 5rem 0; text-align: center;">
+    <div class="container">
+      <h2 class="serif" style="color: var(--color-paper); margin-bottom: 1rem; font-size: clamp(1.75rem, 3vw, 2.75rem);">Un projet similaire ?</h2>
+      <p style="color: rgba(248,246,242,0.75); margin-bottom: 2rem;">Parlez-moi de ce que vous avez en tête.</p>
+      <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+        <a href="devis.html" class="btn btn-light"><span>Estimation gratuite</span></a>
+        <a href="contact.html" class="btn btn-ghost"><span>Me contacter</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom" style="border-top: 1px solid rgba(248,246,242,0.08); padding-top: 2rem;">
+        <div>© 2026 AWA — Le Bricoleur Nantais · SIRET 92399395000016</div>
+        <div>
+          <a href="mentions-legales.html">Mentions légales</a> ·
+          <a href="confidentialite.html">Confidentialité</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+  <script>
+    // ===== FILTRES =====
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const items = document.querySelectorAll('.realisation-item[data-categorie]');
+    const emptyMsg = document.getElementById('emptyMsg');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('is-active'));
+        btn.classList.add('is-active');
+
+        const filter = btn.dataset.filter;
+        let visible = 0;
+
+        items.forEach(item => {
+          const cat = item.dataset.categorie;
+          if (filter === 'all' || cat === filter) {
+            item.classList.remove('is-hidden');
+            visible++;
+          } else {
+            item.classList.add('is-hidden');
+          }
+        });
+
+        emptyMsg.classList.toggle('show', visible === 0);
+      });
+    });
+
+    // ===== LIGHTBOX =====
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxCat = document.getElementById('lightboxCat');
+    const lightboxTitre = document.getElementById('lightboxTitre');
+
+    document.querySelectorAll('.realisation-item').forEach(item => {
+      item.addEventListener('click', () => {
+        const img = item.querySelector('img');
+        const cat = item.dataset.categorie;
+        const titre = item.querySelector('.titre')?.textContent || '';
+
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+        lightboxCat.textContent = cat;
+        lightboxTitre.textContent = titre;
+        lightbox.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+    function closeLightbox() {
+      lightbox.classList.remove('is-open');
+      document.body.style.overflow = '';
+    }
+
+    // ===== CHARGEMENT PHOTOS ADMIN (assets/images/uploads) =====
+    // Les photos ajoutées via Decap CMS sont dans assets/images/uploads/
+    // Elles sont listées via le fichier manifest généré
+    async function loadDynamicPhotos() {
+      try {
+        const res = await fetch('../assets/images/uploads/manifest.json');
+        if (!res.ok) return;
+        const photos = await res.json();
+        const container = document.getElementById('dynamic-photos');
+
+        photos.forEach(photo => {
+          const div = document.createElement('div');
+          div.className = 'realisation-item';
+          div.dataset.categorie = photo.categorie || 'Autres';
+          div.innerHTML = `
+            <img src="../assets/images/uploads/${photo.fichier}" alt="${photo.titre || ''}" loading="lazy">
+            <div class="realisation-label">
+              <span class="cat">${photo.categorie || 'Autres'}</span>
+              <span class="titre">${photo.titre || ''}</span>
+            </div>
+          `;
+          div.addEventListener('click', () => {
+            lightboxImg.src = `../assets/images/uploads/${photo.fichier}`;
+            lightboxCat.textContent = photo.categorie || 'Autres';
+            lightboxTitre.textContent = photo.titre || '';
+            lightbox.classList.add('is-open');
+            document.body.style.overflow = 'hidden';
+          });
+          container.appendChild(div);
+        });
+      } catch(e) {
+        // Pas de manifest = pas de photos dynamiques, c'est normal
+      }
+    }
+
+    loadDynamicPhotos();
+  </script>
+</body>
+</html>
