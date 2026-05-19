@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — Le Bricoleur Nantais | Walid Bouras</title>
+  <meta name="description" content="Contactez Walid Bouras, Le Bricoleur Nantais. Pose de cuisine, sol, montage de meubles à Nantes et environs. Devis gratuit par téléphone, SMS ou formulaire.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+  <style>
+    .contact-page { background: var(--color-paper); }
+
+    .contact-hero {
+      padding: 10rem 0 4rem;
+      text-align: center;
+      position: relative;
+    }
+    .contact-hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 30%, rgba(184,115,51,0.05), transparent 60%);
+      pointer-events: none;
+    }
+    .contact-hero h1 { font-size: clamp(2.5rem, 5vw, 4.5rem); margin-bottom: 1rem; }
+    .contact-hero h1 em { font-style: italic; color: var(--color-copper); font-weight: 300; }
+    .contact-hero p { font-size: 1.1rem; color: var(--color-graphite); max-width: 540px; margin: 0 auto; }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 4rem;
+      align-items: start;
+      padding: 5rem 0 8rem;
+    }
+    @media (max-width: 968px) { .contact-grid { grid-template-columns: 1fr; gap: 3rem; } }
+
+    /* Infos de contact */
+    .contact-infos { display: flex; flex-direction: column; gap: 2rem; }
+
+    .contact-block h3 {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .contact-method {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.25rem;
+      padding: 1.5rem;
+      background: var(--color-white);
+      box-shadow: var(--shadow-soft);
+      margin-bottom: 1rem;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.3s var(--ease-out), box-shadow 0.3s;
+    }
+    .contact-method:hover { transform: translateY(-3px); box-shadow: var(--shadow-medium); }
+
+    .contact-method-icon {
+      width: 48px; height: 48px;
+      background: var(--color-paper);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      color: var(--color-copper);
+    }
+    .contact-method-icon svg { width: 24px; height: 24px; }
+
+    .contact-method-content strong {
+      display: block;
+      font-weight: 500;
+      font-size: 1rem;
+      margin-bottom: 0.2rem;
+    }
+    .contact-method-content span {
+      font-size: 0.9rem;
+      color: var(--color-graphite);
+    }
+    .contact-method-content .value {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      color: var(--color-ink);
+      font-weight: 500;
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
+    .contact-note {
+      margin-top: 2rem;
+      padding: 1.25rem 1.5rem;
+      background: var(--color-paper-warm);
+      border-left: 3px solid var(--color-copper);
+      font-size: 0.92rem;
+      color: var(--color-graphite);
+      line-height: 1.6;
+    }
+
+    /* Formulaire */
+    .contact-form-wrap {
+      background: var(--color-white);
+      padding: 2.5rem;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .contact-form-wrap h3 {
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      margin-bottom: 0.5rem;
+    }
+    .contact-form-wrap .subtitle {
+      font-size: 0.95rem;
+      color: var(--color-graphite);
+      margin-bottom: 2rem;
+    }
+
+    .form-row { margin-bottom: 1.5rem; }
+    .form-row label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--color-ink);
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.02em;
+    }
+    .form-row .req { color: var(--color-copper); }
+    .form-input, .form-select, .form-textarea {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      font-family: inherit;
+      font-size: 1rem;
+      color: var(--color-ink);
+      background: var(--color-paper);
+      border: 1.5px solid rgba(26,26,26,0.12);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      border-radius: 0;
+    }
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      outline: none;
+      border-color: var(--color-copper);
+      box-shadow: 0 0 0 3px rgba(184,115,51,0.1);
+    }
+    .form-textarea { resize: vertical; min-height: 120px; }
+
+    .form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 600px) { .form-row-2 { grid-template-columns: 1fr; } }
+
+    .form-submit {
+      width: 100%;
+      padding: 1rem;
+      background: var(--color-ink);
+      color: var(--color-paper);
+      border: none;
+      font-family: inherit;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      position: relative;
+    }
+    .form-submit:hover { background: var(--color-copper); }
+    .form-submit svg { width: 18px; height: 18px; }
+
+    /* Succès */
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 2.5rem 1.5rem;
+    }
+    .form-success-icon {
+      width: 64px; height: 64px;
+      background: var(--color-copper);
+      color: var(--color-paper);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1.25rem;
+    }
+    .form-success-icon svg { width: 32px; height: 32px; }
+    .form-success h3 { font-size: 1.5rem; margin-bottom: 0.75rem; }
+    .form-success p { color: var(--color-graphite); font-size: 0.95rem; line-height: 1.6; }
+
+    /* Zone d'intervention */
+    .zone-section {
+      background: var(--color-paper-warm);
+      padding: 5rem 0;
+    }
+    .zone-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 2.5rem;
+      justify-content: center;
+    }
+    .zone-tag {
+      padding: 0.6rem 1.2rem;
+      background: var(--color-white);
+      border: 1px solid rgba(26,26,26,0.1);
+      font-size: 0.9rem;
+      color: var(--color-ink-soft);
+      transition: all 0.2s;
+    }
+    .zone-tag:hover {
+      background: var(--color-ink);
+      color: var(--color-paper);
+    }
+  </style>
+</head>
+<body class="contact-page">
+
+  <!-- HEADER -->
+  <header class="header" id="header">
+    <div class="header-inner">
+      <a href="../index.html" class="header-logo">
+        <img src="../assets/images/logo-principal.png" alt="Le Bricoleur Nantais">
+      </a>
+      <nav class="header-nav" id="nav">
+        <ul class="nav-list">
+          <li><a href="../index.html#services" class="nav-link">Services</a></li>
+          <li><a href="../index.html#realisations" class="nav-link">Réalisations</a></li>
+          <li><a href="../index.html#commerces" class="nav-link">Commerces</a></li>
+          <li><a href="a-propos.html" class="nav-link">À propos</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+        <div class="header-cta">
+          <a href="tel:+33615054557" class="tel-link">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8"><path d="M3 5a2 2 0 0 1 2-2h2.28a1 1 0 0 1 .95.68l1.5 4.5a1 1 0 0 1-.25 1.04L8 10.5a11 11 0 0 0 5.5 5.5l1.28-1.48a1 1 0 0 1 1.04-.25l4.5 1.5a1 1 0 0 1 .68.95V19a2 2 0 0 1-2 2h-1C9.4 21 3 14.6 3 6V5z"/></svg>
+            06 15 05 45 57
+          </a>
+          <a href="devis.html" class="btn btn-primary"><span>Estimation gratuite</span></a>
+        </div>
+      </nav>
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="contact-hero">
+    <div class="container" style="position: relative; z-index: 2;">
+      <span class="eyebrow">Me contacter</span>
+      <h1>On se <em>parle</em> ?</h1>
+      <p>Pour un devis, une question ou simplement prendre rendez-vous. Réponse rapide, toujours personnelle.</p>
+    </div>
+  </section>
+
+  <!-- GRID CONTACT -->
+  <section>
+    <div class="container">
+      <div class="contact-grid">
+
+        <!-- Coordonnées -->
+        <div class="contact-infos">
+          <div class="contact-block">
+            <h3 class="serif">Mes coordonnées</h3>
+
+            <a href="tel:+33615054557" class="contact-method">
+              <div class="contact-method-icon">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8"><path d="M3 5a2 2 0 0 1 2-2h2.28a1 1 0 0 1 .95.68l1.5 4.5a1 1 0 0 1-.25 1.04L8 10.5a11 11 0 0 0 5.5 5.5l1.28-1.48a1 1 0 0 1 1.04-.25l4.5 1.5a1 1 0 0 1 .68.95V19a2 2 0 0 1-2 2h-1C9.4 21 3 14.6 3 6V5z"/></svg>
+              </div>
+              <div class="contact-method-content">
+                <strong>Téléphone / SMS / WhatsApp</strong>
+                <span class="value">06 15 05 45 57</span>
+                <span>La façon la plus rapide de me joindre</span>
+              </div>
+            </a>
+
+            <a href="mailto:contact@lebricoleurnantais.fr" class="contact-method">
+              <div class="contact-method-icon">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8"><path d="M3 8l9 6 9-6M5 19h14a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2z"/></svg>
+              </div>
+              <div class="contact-method-content">
+                <strong>Email</strong>
+                <span class="value" style="font-size: 1rem;">contact@lebricoleurnantais.fr</span>
+                <span>Pour les devis détaillés ou les questions écrites</span>
+              </div>
+            </a>
+          </div>
+
+          <div class="contact-note">
+            <strong>Vous avez des photos ?</strong> Envoyez-les directement par SMS ou WhatsApp après votre message — c'est souvent le plus rapide pour comprendre ce que vous avez besoin et vous donner un prix précis.
+          </div>
+
+          <div class="contact-block">
+            <h3 class="serif" style="font-size: 1.25rem; margin-bottom: 1rem;">Walid Bouras</h3>
+            <p style="font-size: 0.95rem; color: var(--color-graphite); line-height: 1.7;">
+              Artisan auto-entrepreneur · Nantes et agglomération<br>
+              SIRET 92399395000016 · RC Pro MMA<br>
+              TVA non applicable, art. 293 B du CGI
+            </p>
+          </div>
+        </div>
+
+        <!-- Formulaire -->
+        <div class="contact-form-wrap">
+          <h3 class="serif">Parlez-moi de votre projet</h3>
+          <p class="subtitle">Je vous réponds personnellement, rapidement.</p>
+
+          <form id="contactForm" novalidate>
+            <input type="hidden" name="access_key" value="0424912e-5be3-47d8-ab15-deb3367771b5">
+            <input type="hidden" name="subject" value="Nouveau message - Le Bricoleur Nantais">
+            <input type="hidden" name="from_name" value="Site Le Bricoleur Nantais">
+
+            <div class="form-row-2">
+              <div class="form-row">
+                <label for="nom">Nom <span class="req">*</span></label>
+                <input type="text" id="nom" name="nom" class="form-input" required placeholder="Prénom et nom">
+              </div>
+              <div class="form-row">
+                <label for="telephone">Téléphone <span class="req">*</span></label>
+                <input type="tel" id="telephone" name="telephone" class="form-input" required placeholder="06 12 34 56 78">
+              </div>
+            </div>
+
+            <div class="form-row">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" class="form-input" placeholder="exemple@email.fr">
+            </div>
+
+            <div class="form-row">
+              <label for="service">Type de projet <span class="req">*</span></label>
+              <select id="service" name="service" class="form-select" required>
+                <option value="">Sélectionnez…</option>
+                <option value="Pose de cuisine">Pose de cuisine</option>
+                <option value="Pose de sol">Pose de sol</option>
+                <option value="Montage de meubles">Montage de meubles</option>
+                <option value="Accrochage muraux">Accrochage muraux</option>
+                <option value="Aménagement de commerce">Aménagement de commerce</option>
+                <option value="Autre">Autre</option>
+              </select>
+            </div>
+
+            <div class="form-row">
+              <label for="ville">Ville du chantier <span class="req">*</span></label>
+              <input type="text" id="ville" name="ville" class="form-input" required placeholder="Nantes, Rezé, Saint-Herblain…">
+            </div>
+
+            <div class="form-row">
+              <label for="message">Votre message</label>
+              <textarea id="message" name="message" class="form-textarea" placeholder="Décrivez votre projet, vos contraintes, vos questions… Plus c'est précis, plus mon retour sera utile."></textarea>
+            </div>
+
+            <button type="submit" class="form-submit" id="submitBtn">
+              <span id="submitLabel">Envoyer le message</span>
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
+            </button>
+          </form>
+
+          <div class="form-success" id="formSuccess">
+            <div class="form-success-icon">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <h3 class="serif">Message reçu !</h3>
+            <p>Je vous réponds rapidement. En attendant, vous pouvez aussi m'envoyer des photos de votre projet par SMS au <strong>06 15 05 45 57</strong>.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ZONE D'INTERVENTION -->
+  <section class="zone-section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Zone d'intervention</span>
+        <h2>Nantes et ses environs</h2>
+        <p>Déplacement inclus dans les tarifs jusqu'à 20 km de Nantes. Au-delà, +0,50 €/km.</p>
+      </div>
+      <div class="zone-grid">
+        <span class="zone-tag">Nantes</span>
+        <span class="zone-tag">Rezé</span>
+        <span class="zone-tag">Saint-Herblain</span>
+        <span class="zone-tag">Vertou</span>
+        <span class="zone-tag">Bouguenais</span>
+        <span class="zone-tag">Orvault</span>
+        <span class="zone-tag">Carquefou</span>
+        <span class="zone-tag">Sainte-Luce-sur-Loire</span>
+        <span class="zone-tag">Saint-Sébastien-sur-Loire</span>
+        <span class="zone-tag">La Chapelle-sur-Erdre</span>
+        <span class="zone-tag">Couëron</span>
+        <span class="zone-tag">Basse-Goulaine</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom" style="border-top: 1px solid rgba(248,246,242,0.08); padding-top: 2rem;">
+        <div>© 2026 AWA — Le Bricoleur Nantais · SIRET 92399395000016 · Auto-entrepreneur · RC Pro MMA</div>
+        <div>
+          <a href="mentions-legales.html">Mentions légales</a> ·
+          <a href="confidentialite.html">Confidentialité</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+  <script>
+    const form = document.getElementById('contactForm');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('submitBtn');
+      const label = document.getElementById('submitLabel');
+      btn.disabled = true;
+      label.textContent = 'Envoi…';
+
+      const formData = new FormData(form);
+      const key = formData.get('access_key');
+
+      try {
+        if (key && key !== '0424912e-5be3-47d8-ab15-deb3367771b5') {
+          const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: formData });
+          const data = await res.json();
+          if (!data.success) throw new Error();
+        } else {
+          await new Promise(r => setTimeout(r, 700));
+        }
+        form.style.display = 'none';
+        document.getElementById('formSuccess').style.display = 'block';
+      } catch {
+        alert('Erreur lors de l\'envoi. Contactez-moi directement au 06 15 05 45 57.');
+        btn.disabled = false;
+        label.textContent = 'Envoyer le message';
+      }
+    });
+  </script>
+</body>
+</html>

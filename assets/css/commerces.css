@@ -1,0 +1,276 @@
+/* =========================================================
+   LE BRICOLEUR NANTAIS - Page Aménagement Commerces
+   ========================================================= */
+
+/* --- Hero spécial commerces (sombre) --- */
+.commerce-hero {
+  background: var(--color-ink);
+  color: var(--color-paper);
+  position: relative;
+  padding: 10rem 0 6rem;
+  overflow: hidden;
+}
+
+.commerce-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 30% 40%, rgba(184, 115, 51, 0.15), transparent 50%),
+    radial-gradient(circle at 80% 60%, rgba(184, 115, 51, 0.08), transparent 50%);
+  pointer-events: none;
+}
+
+.commerce-hero .container { position: relative; z-index: 2; }
+
+.commerce-hero .eyebrow { color: var(--color-copper-soft); }
+
+.commerce-hero h1 {
+  font-size: clamp(2.75rem, 6vw, 5.25rem);
+  line-height: 1.05;
+  margin-bottom: 1.75rem;
+  color: var(--color-paper);
+  max-width: 920px;
+}
+
+.commerce-hero h1 em {
+  font-style: italic;
+  color: var(--color-copper-soft);
+  font-weight: 300;
+}
+
+.commerce-hero-lead {
+  font-size: 1.2rem;
+  line-height: 1.65;
+  color: rgba(248, 246, 242, 0.78);
+  max-width: 720px;
+  margin-bottom: 3rem;
+}
+
+.commerce-hero-stats {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  gap: 3rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid rgba(248, 246, 242, 0.15);
+}
+
+@media (max-width: 768px) {
+  .commerce-hero-stats { grid-template-columns: 1fr; gap: 1.5rem; }
+}
+
+.commerce-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.commerce-stat .num {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  color: var(--color-copper-soft);
+  line-height: 1;
+}
+
+.commerce-stat .label {
+  font-size: 0.85rem;
+  color: rgba(248, 246, 242, 0.65);
+  letter-spacing: 0.05em;
+}
+
+/* --- Comparateur Avant/Après --- */
+.before-after-section {
+  background: var(--color-paper);
+}
+
+.transformation {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  margin-bottom: 6rem;
+  align-items: stretch;
+  background: var(--color-white);
+  box-shadow: var(--shadow-medium);
+}
+
+.transformation:last-child { margin-bottom: 0; }
+
+@media (max-width: 968px) {
+  .transformation { grid-template-columns: 1fr; }
+}
+
+.transformation-images {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+
+.transformation-img {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 3 / 4;
+}
+
+.transformation-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1.2s var(--ease-out);
+}
+
+.transformation-img:hover img { transform: scale(1.03); }
+
+.transformation-img-tag {
+  position: absolute;
+  top: 1.25rem;
+  left: 1.25rem;
+  background: rgba(26, 26, 26, 0.92);
+  color: var(--color-paper);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  padding: 0.5rem 0.85rem;
+  z-index: 2;
+}
+
+.transformation-img.is-after .transformation-img-tag {
+  background: var(--color-copper);
+  color: var(--color-paper);
+}
+
+.transformation-content {
+  padding: 3rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .transformation-content { padding: 2.5rem 1.75rem; }
+}
+
+.transformation-content .eyebrow {
+  margin-bottom: 0.5rem;
+}
+
+.transformation-content h3 {
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  margin-bottom: 1.25rem;
+}
+
+.transformation-content > p {
+  color: var(--color-graphite);
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+}
+
+.transformation-features {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.transformation-feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: 0.95rem;
+  color: var(--color-ink-soft);
+  line-height: 1.5;
+}
+
+.transformation-feature::before {
+  content: '';
+  flex-shrink: 0;
+  width: 6px;
+  height: 6px;
+  background: var(--color-copper);
+  border-radius: 50%;
+  margin-top: 9px;
+}
+
+.transformation.is-reversed .transformation-images { order: 2; }
+
+@media (max-width: 968px) {
+  .transformation.is-reversed .transformation-images { order: 1; }
+}
+
+/* --- Types de prestations --- */
+.prestations-section {
+  background: var(--color-paper-warm);
+}
+
+.prestations-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 3.5rem;
+}
+
+@media (max-width: 968px) { .prestations-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .prestations-grid { grid-template-columns: 1fr; } }
+
+.prestation-card {
+  padding: 2rem 1.75rem;
+  background: var(--color-white);
+  border-top: 2px solid var(--color-copper);
+  transition: transform 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out);
+}
+
+.prestation-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-medium);
+}
+
+.prestation-card h4 {
+  font-size: 1.3rem;
+  margin-bottom: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.prestation-card h4 svg {
+  width: 22px;
+  height: 22px;
+  color: var(--color-copper);
+}
+
+.prestation-card p {
+  color: var(--color-graphite);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* --- Cibles clients --- */
+.clients-section {
+  background: var(--color-paper);
+}
+
+.clients-bar {
+  margin-top: 3rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+.client-tag {
+  padding: 0.85rem 1.5rem;
+  background: var(--color-white);
+  border: 1px solid rgba(26, 26, 26, 0.12);
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--color-ink);
+  transition: all 0.3s;
+}
+
+.client-tag:hover {
+  background: var(--color-ink);
+  color: var(--color-paper);
+  border-color: var(--color-ink);
+}

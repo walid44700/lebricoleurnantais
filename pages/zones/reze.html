@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bricoleur à Rezé : pose cuisine, sol, montage meubles | Le Bricoleur Nantais — Walid Bouras</title>
+  <meta name="description" content="Le Bricoleur Nantais intervient à Rezé (44) : pose de cuisine, sol stratifié et PVC, montage de meubles, accrochage muraux. Rezé à 5 min de Nantes — déplacement inclus. Devis gratuit.">
+  <meta name="keywords" content="bricoleur Rezé, poseur cuisine Rezé, pose sol Rezé, montage meubles Rezé, artisan Rezé">
+
+  <link rel="canonical" href="https://lebricoleurnantais.fr/pages/zones/reze.html">
+  <meta property="og:title" content="Bricoleur à Rezé : pose cuisine, sol, montage meubles | Le Bricoleur Nantais">
+  <meta property="og:description" content="Artisan polyvalent à Rezé : cuisine, sol, meubles, fixations. Devis gratuit.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="fr_FR">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+
+  <style>
+    .zone-hero {
+      padding: 10rem 0 5rem;
+      background: var(--color-paper);
+      position: relative;
+    }
+    .zone-hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 70% 30%, rgba(184,115,51,0.05), transparent 55%);
+      pointer-events: none;
+    }
+    .zone-hero-inner { position: relative; z-index: 2; max-width: 860px; }
+    .zone-hero h1 { font-size: clamp(2.25rem, 4.5vw, 4rem); margin-bottom: 1.25rem; line-height: 1.1; }
+    .zone-hero h1 em { font-style: italic; color: var(--color-copper); }
+    .zone-hero .lead { font-size: 1.1rem; color: var(--color-graphite); line-height: 1.7; margin-bottom: 2.5rem; max-width: 640px; }
+    .zone-hero .badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--color-ink); color: var(--color-paper);
+      padding: 0.5rem 1rem; font-size: 0.85rem;
+      font-family: var(--font-mono); letter-spacing: 0.05em;
+    }
+    .zone-hero .badge svg { width: 16px; height: 16px; color: var(--color-copper-soft); }
+
+    .services-local {
+      padding: 5rem 0;
+      background: var(--color-paper-warm);
+    }
+    .services-local-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin-top: 2.5rem;
+    }
+    @media (max-width: 600px) { .services-local-grid { grid-template-columns: 1fr; } }
+
+    .service-local-card {
+      background: var(--color-white);
+      padding: 1.75rem;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      box-shadow: var(--shadow-soft);
+      transition: transform 0.3s, box-shadow 0.3s;
+      border-top: 2px solid transparent;
+    }
+    .service-local-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-medium);
+      border-top-color: var(--color-copper);
+    }
+    .service-local-card h3 { font-size: 1.25rem; }
+    .service-local-card p { font-size: 0.9rem; color: var(--color-graphite); line-height: 1.55; }
+    .service-local-card .arrow { font-size: 0.8rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-copper); margin-top: 0.5rem; }
+
+    .zone-cta {
+      background: var(--color-ink);
+      color: var(--color-paper);
+      padding: 5rem 0;
+      text-align: center;
+    }
+    .zone-cta h2 { color: var(--color-paper); margin-bottom: 1rem; font-size: clamp(1.75rem, 3vw, 2.75rem); }
+    .zone-cta p { color: rgba(248,246,242,0.75); font-size: 1.05rem; margin-bottom: 2.5rem; }
+    .zone-cta .btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    .autres-villes {
+      padding: 4rem 0;
+      background: var(--color-paper);
+    }
+    .autres-villes h3 { font-family: var(--font-display); font-size: 1.25rem; margin-bottom: 1.25rem; }
+    .villes-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .villes-list a {
+      padding: 0.4rem 0.9rem;
+      background: var(--color-white);
+      border: 1px solid rgba(26,26,26,0.1);
+      font-size: 0.88rem;
+      color: var(--color-ink-soft);
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .villes-list a:hover { background: var(--color-ink); color: var(--color-paper); }
+    .villes-list a.current { background: var(--color-ink); color: var(--color-paper); pointer-events: none; }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Le Bricoleur Nantais",
+    "description": "Artisan polyvalent à Rezé : pose de cuisine, sol, montage de meubles, accrochage muraux.",
+    "telephone": "+33615054557",
+    "url": "https://lebricoleurnantais.fr",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Rezé",
+      "postalCode": "44000",
+      "addressCountry": "FR"
+    },
+    "areaServed": {
+      "@type": "City",
+      "name": "Rezé"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5.0",
+      "reviewCount": "12"
+    }
+  }
+  </script>
+</head>
+<body>
+
+  <header class="header" id="header">
+    <div class="header-inner">
+      <a href="../../index.html" class="header-logo">
+        <img src="../../assets/images/logo-principal.png" alt="Le Bricoleur Nantais">
+      </a>
+      <nav class="header-nav" id="nav">
+        <ul class="nav-list">
+          <li><a href="../../index.html#services" class="nav-link">Services</a></li>
+          <li><a href="../../index.html#realisations" class="nav-link">Réalisations</a></li>
+          <li><a href="../a-propos.html" class="nav-link">À propos</a></li>
+          <li><a href="../contact.html" class="nav-link">Contact</a></li>
+        </ul>
+        <div class="header-cta">
+          <a href="tel:+33615054557" class="tel-link">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8"><path d="M3 5a2 2 0 0 1 2-2h2.28a1 1 0 0 1 .95.68l1.5 4.5a1 1 0 0 1-.25 1.04L8 10.5a11 11 0 0 0 5.5 5.5l1.28-1.48a1 1 0 0 1 1.04-.25l4.5 1.5a1 1 0 0 1 .68.95V19a2 2 0 0 1-2 2h-1C9.4 21 3 14.6 3 6V5z"/></svg>
+            06 15 05 45 57
+          </a>
+          <a href="../devis.html" class="btn btn-primary"><span>Estimation gratuite</span></a>
+        </div>
+      </nav>
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="zone-hero">
+    <div class="container">
+      <div class="zone-hero-inner">
+        <span class="eyebrow">Artisan à Rezé</span>
+        <h1>Bricoleur à <em>Rezé</em><br>Devis gratuit, sans engagement</h1>
+        <p class="lead">Je travaille régulièrement à Rezé, commune limitrophe de Nantes au sud. Châteaubourg, Pont Rousseau, Ragon, les nouveaux quartiers des bords de Loire — j'interviens partout, sans supplément de déplacement.</p>
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem;">
+          <a href="../devis.html" class="btn btn-primary"><span>Demander un devis</span></a>
+          <a href="tel:+33615054557" class="btn btn-secondary">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" style="width:16px;height:16px;"><path d="M3 5a2 2 0 0 1 2-2h2.28a1 1 0 0 1 .95.68l1.5 4.5a1 1 0 0 1-.25 1.04L8 10.5a11 11 0 0 0 5.5 5.5l1.28-1.48a1 1 0 0 1 1.04-.25l4.5 1.5a1 1 0 0 1 .68.95V19a2 2 0 0 1-2 2h-1C9.4 21 3 14.6 3 6V5z"/></svg>
+            <span>06 15 05 45 57</span>
+          </a>
+        </div>
+        <div class="badge">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="M12 2l3 7h7l-5.5 4.5 2 7L12 17l-6.5 3.5 2-7L2 9h7z"/></svg>
+          5,0 / 5 sur Google · 12 avis · RC Pro MMA
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services-local">
+    <div class="container">
+      <div class="section-head align-left reveal">
+        <span class="eyebrow">Mes services à Rezé</span>
+        <h2>Ce que je fais chez vous</h2>
+        <p>Toutes les prestations sont disponibles à Rezé et dans les quartiers alentours (Pont Rousseau, Châteaubourg, Ragon, Les Isles, Houssais).</p>
+      </div>
+      <div class="services-local-grid">
+        <a href="../pose-cuisine.html" class="service-local-card reveal">
+          <h3 class="serif">Pose de cuisine</h3>
+          <p>Toutes marques : Ikea, But, Conforama, Howdens… Montage, raccordements eau et électricité, finitions. À Rezé, je me déplace sans supplément.</p>
+          <span class="arrow">Voir les tarifs →</span>
+        </a>
+        <a href="../pose-sol.html" class="service-local-card reveal">
+          <h3 class="serif">Pose de sol</h3>
+          <p>Sol stratifié et PVC clipsable à Rezé. Dépose de l'ancien revêtement, préparation du support, plinthes. À partir de 25 €/m².</p>
+          <span class="arrow">Voir les tarifs →</span>
+        </a>
+        <a href="../montage-meubles.html" class="service-local-card reveal">
+          <h3 class="serif">Montage de meubles</h3>
+          <p>Ikea, But, dressings, lits, bureaux. Je monte vos meubles à Rezé avec patience et précision. Minimum 50 €.</p>
+          <span class="arrow">Voir les tarifs →</span>
+        </a>
+        <a href="../accrochage-mural.html" class="service-local-card reveal">
+          <h3 class="serif">Accrochage muraux</h3>
+          <p>Étagères, cadres, miroirs, supports TV, luminaires. Droit, solide, bien placé — à Rezé et environs.</p>
+          <span class="arrow">Voir les tarifs →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="zone-cta">
+    <div class="container">
+      <h2 class="serif">Un projet à Rezé ?</h2>
+      <p>Envoyez-moi quelques photos ou décrivez votre projet. Je reviens vers vous rapidement avec un devis détaillé.</p>
+      <div class="btns">
+        <a href="../devis.html" class="btn btn-light"><span>Estimer mon projet</span></a>
+        <a href="../contact.html" class="btn btn-ghost"><span>Me contacter</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- AUTRES VILLES -->
+  <section class="autres-villes">
+    <div class="container">
+      <h3 class="serif">J'interviens aussi dans toute l'agglomération</h3>
+      <div class="villes-list">
+        <a href="nantes.html">Nantes</a>
+        <a href="reze.html" class="current">Rezé</a>
+        <a href="saint-herblain.html">Saint-Herblain</a>
+        <a href="vertou.html">Vertou</a>
+        <a href="bouguenais.html">Bouguenais</a>
+        <a href="orvault.html">Orvault</a>
+        <a href="carquefou.html">Carquefou</a>
+        <a href="sainte-luce-sur-loire.html">Sainte-Luce-sur-Loire</a>
+        <a href="saint-sebastien-sur-loire.html">Saint-Sébastien-sur-Loire</a>
+        <a href="la-chapelle-sur-erdre.html">La Chapelle-sur-Erdre</a>
+        <a href="coueron.html">Couëron</a>
+        <a href="basse-goulaine.html">Basse-Goulaine</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER minimal -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom" style="border-top: 1px solid rgba(248,246,242,0.08); padding-top: 2rem;">
+        <div>© 2026 AWA — Le Bricoleur Nantais · Artisan à Rezé · SIRET 92399395000016</div>
+        <div>
+          <a href="../mentions-legales.html">Mentions légales</a> ·
+          <a href="../confidentialite.html">Confidentialité</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>
