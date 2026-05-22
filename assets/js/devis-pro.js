@@ -14,31 +14,31 @@ const AUTH_KEY = 'lebricoleurnantais_pro_auth';
 // --- Catalogue des prestations ---
 const CATALOG = {
   cuisineBase: [
-    { id: 'forfait', label: 'Forfait de base', desc: 'Déplacement, inventaire, coordination', price: 220, defaultQty: 1, fixed: true },
+    { id: 'forfait', label: 'Forfait de base', desc: 'Déplacement, inventaire, coordination', price: 210, defaultQty: 1, fixed: true },
   ],
   cuisineMeubles: [
-    { id: 'meuble_std', label: 'Meuble bas ou haut standard', price: 40 },
-    { id: 'meuble_tiroirs', label: 'Meuble avec tiroirs', price: 50 },
-    { id: 'casserolier', label: 'Casserolier', price: 55 },
-    { id: 'angle', label: 'Meuble d\'angle', price: 60 },
-    { id: 'colonne', label: 'Colonne (four, frigo, rangement)', price: 85 },
+    { id: 'meuble_std', label: 'Meuble bas ou haut standard', price: 30 },
+    { id: 'meuble_tiroirs', label: 'Meuble avec tiroirs', price: 40 },
+    { id: 'casserolier', label: 'Casserolier', price: 45 },
+    { id: 'angle', label: 'Meuble d\'angle', price: 50 },
+    { id: 'colonne', label: 'Colonne (four, frigo, rangement)', price: 75 },
   ],
   cuisineElectro: [
-    { id: 'evier', label: 'Évier raccordé', desc: 'Découpe, fixation, raccordement', price: 75 },
-    { id: 'plaque', label: 'Plaque de cuisson', desc: 'Découpe + raccordement', price: 75 },
-    { id: 'four', label: 'Four encastrable', price: 45 },
+    { id: 'evier', label: 'Évier raccordé', desc: 'Découpe, fixation, raccordement', price: 65 },
+    { id: 'plaque', label: 'Plaque de cuisson', desc: 'Découpe + raccordement', price: 65 },
+    { id: 'four', label: 'Four encastrable', price: 35 },
     { id: 'lv', label: 'Lave-vaisselle encastrable', price: 85 },
-    { id: 'frigo', label: 'Frigo encastrable', price: 105 },
-    { id: 'hotte_simple', label: 'Hotte simple', price: 45 },
-    { id: 'hotte_enc', label: 'Hotte encastrable', price: 65 },
+    { id: 'frigo', label: 'Frigo encastrable', price: 95 },
+    { id: 'hotte_simple', label: 'Hotte simple', price: 35 },
+    { id: 'hotte_enc', label: 'Hotte encastrable', price: 55 },
   ],
   cuisineFinitions: [
-    { id: 'credence', label: 'Pose de crédence (ml)', desc: 'Découpe, ajustement, fixation', price: 28, unit: '€/ml' },
+    { id: 'credence', label: 'Pose de crédence (ml)', desc: 'Découpe, ajustement, fixation', price: 18, unit: '€/ml' },
     { id: 'prise', label: 'Adaptation prise sur crédence', price: 10, unit: '€/prise' },
-    { id: 'accessoires', label: 'Accessoires (poubelle, panier coulissant…)', price: 25 },
+    { id: 'accessoires', label: 'Accessoires (poubelle, panier coulissant…)', price: 15 },
   ],
   cuisineEvac: [
-    { id: 'evacuation', label: 'Évacuation déchets', desc: 'Cartons, anciens meubles', price: 40, defaultQty: 0 },
+    { id: 'evacuation', label: 'Évacuation déchets', desc: 'Cartons, anciens meubles', price: 30, defaultQty: 0 },
   ],
   solOptions: [
     { id: 'depose_carrelage', label: 'Pose sur carrelage existant (supplément)', price: 30, defaultQty: 0 },
